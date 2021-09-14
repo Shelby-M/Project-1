@@ -35,8 +35,14 @@
 <section class="container">
 
 
-<div id='map' style='width: 50vw; height: 50vh;'></div>
 
+<input
+      id="pac-input"
+      class="controls"
+      type="text"
+      placeholder="Search Box"
+    />
+    <div id='map' style='width: 100vw; height: 100vh;'></div>
 </section>
 
 
@@ -48,6 +54,9 @@
 
 
     <script src="Data/script.js"></script>
-    
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWOpfzWAPJcxLej0Tv2_XZB513YpiNg6M&callback=initAutocomplete&libraries=places&v=weekly"
+      async
+    ></script>
   </body>
 </html>
