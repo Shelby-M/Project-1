@@ -16,23 +16,15 @@
 
   <body>
 
-    <div class="card">
+    <div class="card"  style="background-color: burlywood;">
         <div class="card-content">
           <div class="content has-text-centered">
-              <h1>Coffe Search </h1>
+              <h1 class="content" style="color: rgb(94, 68, 68);">Coffe Search </h1>
           </div>
             </div>
             </div>
 
-<section class="hero is-info">
-    <div class="hero-body">
-    <div class="container">
-    <div class="control search-field"></div>
-    <input class="input is-small" id="searchInput" type="text" placeholder="Enter location" v-model="search"/>
-    </div>
-    <input class="button is-rounded is-medium" id="searchButton" type="submit" value="Search">
-        </section>
-<section class="container">
+
 
 
 
@@ -41,6 +33,7 @@
       class="controls"
       type="text"
       placeholder="Search Box"
+      style="width:100%; height: 40px;"
     />
     <div id='map' style='width: 100vw; height: 100vh;'></div>
 </section>
