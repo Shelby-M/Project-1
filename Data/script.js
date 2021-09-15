@@ -1,42 +1,28 @@
+// Google API Key
 var googleApikey = "AIzaSyCQwhxC1XQdwl0B2Aqpb5S6fQCpXOvC0W8";
-var input = document.querySelector(".input");
 
-function getCurrentPosition(coords) {
-  navigator.geolocation.getCurrentPosition((position) => {
-    console.log(position);
-  });
-}
-
-$("#searchButton").click(function () {
-  console.log("button");
-  getCurrentPosition();
-  fetch(
-    `https://maps.googleapis.com/maps/api/json?${input.value}&key=${googleApikey}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      data.coords;
-    });
-});
-
+//create map, center location is Charlotte, NC
 function initAutocomplete() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 35.2, lng: -80.8 },
     zoom: 13,
     mapTypeId: "roadmap",
   });
-  // Create the search box and link it to the UI element.
+
+  //create search input, style search box
   const input = document.getElementById("pac-input");
   const searchBox = new google.maps.places.SearchBox(input);
 
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  // Bias the SearchBox results towards current map's viewport.
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+
+  //keep search results in maps viewport
   map.addListener("bounds_changed", () => {
     searchBox.setBounds(map.getBounds());
   });
 
   let markers = [];
 
+  //add markers find locations of search
   searchBox.addListener("places_changed", () => {
     const places = searchBox.getPlaces();
 
@@ -53,7 +39,7 @@ function initAutocomplete() {
 
     places.forEach((place) => {
       if (!place.geometry || !place.geometry.location) {
-        console.log("Returned place contains no geometry");
+        console.log("error");
         return;
       }
 
@@ -61,11 +47,9 @@ function initAutocomplete() {
         url: place.icon,
         size: new google.maps.Size(71, 71),
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
         scaledSize: new google.maps.Size(25, 25),
       };
 
-      // Create a marker for each place.
       markers.push(
         new google.maps.Marker({
           map,
@@ -75,7 +59,6 @@ function initAutocomplete() {
         })
       );
       if (place.geometry.viewport) {
-        // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
       } else {
         bounds.extend(place.geometry.location);
