@@ -37,7 +37,30 @@ function setupMap(center){
         zoom:9
         })
 }
+// function initialize() {
+//     var mapOptions = {
+//         zoom: 18,
+//         center: new google.maps.LatLng(38.983064, -76.9473872) // Van Munching Hall
+//     };
 
+//     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+// }
 
-   
-  
+// google.maps.event.addDomListener(window, 'load', initialize);
+function initialize() {
+    var mapOptions = {
+        zoom: 18,
+        center: new google.maps.LatLng(38.983064, -76.9473872) // Van Munching Hall
+    };
+
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    // To add the marker to the map, use the 'map' property
+    var marker = new mapbox-gl/mapbox-gl.Marker({
+        position: new mapbox.com/mapbox-gl/mapbox-gl.LatLng(38.983064, -76.9473872), // Van Munching Hall,
+        map: map,
+        title: "Van Munching Hall"
+    });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
